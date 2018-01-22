@@ -2,7 +2,10 @@
     <div>
         <h1>Vue Sync Form Sample</h1>
         <textarea v-model="form"></textarea>
+        <br/>
         <button @click='postSync'>Submit</button>
+          <br/>
+        <button @click='postSync'>Submit using a class</button>
     </div>
 </template>
 
@@ -15,6 +18,8 @@ textarea {
 
 
 <script>
+import { syncForm } from "vue-sync-form";
+
 export default {
   name: "App",
   data() {
@@ -27,6 +32,9 @@ export default {
   methods: {
     postSync() {
       this.$syncForm.postSync("/test", JSON.parse(this.form));
+    },
+    postSyncWithClass() {
+      syncForm.postSync("/test", JSON.parse(this.form));
     }
   },
   watch: {
